@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOCKAISH — Folclore Santiagueño</title>
+  <meta name="description" content="NOCKAISH es un dúo de folclore santiagueño formado por Lupin y Lucho. Dos guitarras, dos voces, una sola raíz: el monte y la tierra de Santiago del Estero." />
+  <meta property="og:title" content="NOCKAISH — Folclore Santiagueño" />
+  <meta property="og:description" content="Dos guitarras y dos voces que comparten un mismo latido: el de la tierra y el monte." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tierra:   #5C3D2E;
+      --arena:    #C9A87C;
+      --ocre:     #A0622A;
+      --polvo:    #EDE0CC;
+      --noche:    #1A110A;
+      --humo:     #2E1F14;
+      --monte:    #3D5C3A;
+      --claro:    #F5EDD9;
+      --blanco:   #FAF6EE;
+      --gris:     #7A6858;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background-color: var(--noche);
+      color: var(--polvo);
+      font-size: 19px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── TEXTURA DE FONDO ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A87C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(26, 17, 10, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201, 168, 124, 0.15);
+      transition: padding 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--arena);
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--polvo);
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; color: var(--arena); }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--arena);
+      margin: 5px 0;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ── HERO ── */
+    #inicio {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(160, 98, 42, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(61, 92, 58, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 10%, rgba(92, 61, 46, 0.2) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-lines svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.06;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--arena);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4.5rem, 12vw, 9rem);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--claro);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.5s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--arena);
+      display: block;
+      font-size: 0.6em;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gris);
+      letter-spacing: 0.05em;
+      margin-top: 1.5rem;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.7s forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.9s forwards;
+    }
+
+    .btn {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--arena);
+      border-color: var(--arena);
+      color: var(--noche);
+    }
+
+    .btn-primary:hover {
+      background: var(--ocre);
+      border-color: var(--ocre);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(201, 168, 124, 0.4);
+      color: var(--arena);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--arena);
+      background: rgba(201, 168, 124, 0.08);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.5s forwards;
+    }
+
+    .scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--arena), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ── SECCIONES ── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 7rem 2rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--arena);
+      margin-bottom: 1.5rem;
+      opacity: 0.7;
+    }
+
+    .section-tag::before {
+      content: '— ';
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--claro);
+      margin-bottom: 2.5rem;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--arena);
+      margin: 2rem 0;
+      opacity: 0.5;
+    }
+
+    /* ── NOSOTROS ── */
+    #nosotros .section-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .nosotros-text p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(237, 224, 204, 0.8);
+      margin-bottom: 1.4rem;
+    }
+
+    .nosotros-text p strong {
+      color: var(--arena);
+      font-weight: 400;
+    }
+
+    .nosotros-visual {
+      position: relative;
+    }
+
+    .quichua-box {
+      border: 1px solid rgba(201, 168, 124, 0.2);
+      padding: 3rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .quichua-box::before, .quichua-box::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--arena);
+      border-style: solid;
+      opacity: 0.4;
+    }
+
+    .quichua-box::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+    .quichua-box::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+    .quichua-word {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--arena);
+      line-height: 1;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .quichua-def {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    .quichua-lang {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: rgba(122, 104, 88, 0.6);
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    /* ── MÚSICA ── */
+    #musica {
+      background: rgba(201, 168, 124, 0.03);
+      border-top: 1px solid rgba(201, 168, 124, 0.08);
+      border-bottom: 1px solid rgba(201, 168, 124, 0.08);
+    }
+
+    .generos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 3rem;
+    }
+
+    .genero-item {
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(201, 168, 124, 0.1);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .genero-item:hover {
+      background: rgba(201, 168, 124, 0.05);
+      border-color: rgba(201, 168, 124, 0.25);
+    }
+
+    .genero-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      color: var(--arena);
+      opacity: 0.5;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .genero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--claro);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .genero-desc {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--gris);
+      line-height: 1.6;
+    }
+
+    .disco-anuncio {
+      margin-top: 5rem;
+      padding: 3rem;
+      border: 1px solid rgba(201, 168, 124, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      background: rgba(160, 98, 42, 0.06);
+    }
+
+    .disco-icon {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      border: 1px solid rgba(201, 168, 124, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .disco-icon svg {
+      width: 36px;
+      height: 36px;
+      opacity: 0.7;
+    }
+
+    .disco-info .badge {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--arena);
+      background: rgba(201, 168, 124, 0.1);
+      padding: 0.3rem 0.8rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .disco-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--claro);
+      margin-bottom: 0.5rem;
+    }
+
+    .disco-info p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--gris);
+    }
+
+    /* ── GACETILLA ── */
+    #gacetilla .section-inner {
+      max-width: 700px;
+    }
+
+    .gacetilla-body {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(237, 224, 204, 0.8);
+      line-height: 1.8;
+    }
+
+    .gacetilla-body p { margin-bottom: 1.4rem; }
+
+    .gacetilla-body .destacado {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--arena);
+      border-left: 2px solid rgba(201, 168, 124, 0.4);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+      line-height: 1.5;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .download-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ── IMÁGENES ── */
+    #imagenes {
+      background: rgba(201, 168, 124, 0.02);
+      border-top: 1px solid rgba(201, 168, 124, 0.08);
+    }
+
+    .galeria-placeholder {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .galeria-item {
+      aspect-ratio: 3/4;
+      border: 1px solid rgba(201, 168, 124, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: rgba(201, 168, 124, 0.03);
+      transition: border-color 0.3s;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .galeria-item:hover {
+      border-color: rgba(201, 168, 124, 0.25);
+    }
+
+    .galeria-item svg {
+      width: 32px;
+      height: 32px;
+      opacity: 0.25;
+    }
+
+    .galeria-item span {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gris);
+      opacity: 0.5;
+    }
+
+    .galeria-note {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--gris);
+      opacity: 0.6;
+    }
+
+    /* ── AFICHES ── */
+    .afiches-grid {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .afiche-item {
+      aspect-ratio: 2/3;
+      border: 1px solid rgba(201, 168, 124, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: rgba(201, 168, 124, 0.03);
+      transition: border-color 0.3s;
+    }
+
+    .afiche-item:hover { border-color: rgba(201, 168, 124, 0.25); }
+
+    .afiche-item svg { width: 28px; height: 28px; opacity: 0.2; }
+    .afiche-item span { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); opacity: 0.5; }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      border-top: 1px solid rgba(201, 168, 124, 0.08);
+    }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .contacto-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--arena);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      opacity: 0.7;
+    }
+
+    .contacto-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contacto-item .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gris);
+      opacity: 0.6;
+    }
+
+    .contacto-item .value {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--polvo);
+    }
+
+    .contacto-item a {
+      color: var(--polvo);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contacto-item a:hover { color: var(--arena); }
+
+    .redes {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .red-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--polvo);
+      font-size: 1rem;
+      font-weight: 300;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(201, 168, 124, 0.1);
+      transition: all 0.2s;
+    }
+
+    .red-link:hover {
+      border-color: rgba(201, 168, 124, 0.3);
+      color: var(--arena);
+      background: rgba(201, 168, 124, 0.04);
+    }
+
+    .red-link svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+
+    .contacto-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gris);
+      opacity: 0.7;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: rgba(201, 168, 124, 0.04);
+      border: 1px solid rgba(201, 168, 124, 0.15);
+      color: var(--polvo);
+      font-family: 'Crimson Pro', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      padding: 0.8rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(201, 168, 124, 0.25);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: rgba(201, 168, 124, 0.4);
+    }
+
+    .form-group textarea { min-height: 120px; }
+
+    .form-submit {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      background: var(--arena);
+      border: none;
+      color: var(--noche);
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover { background: var(--ocre); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(201, 168, 124, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--arena);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--gris);
+      opacity: 0.4;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── ANIMACIONES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(0.6); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: rgba(26, 17, 10, 0.98);
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 1px solid rgba(201, 168, 124, 0.1);
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links li a {
+        display: block;
+        padding: 1.1rem 1.5rem;
+        border-bottom: 1px solid rgba(201, 168, 124, 0.06);
+      }
+
+      .nav-toggle { display: block; }
+
+      #nosotros .section-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .generos { grid-template-columns: 1fr; }
+      .galeria-placeholder { grid-template-columns: repeat(2, 1fr); }
+      .afiches-grid { grid-template-columns: 1fr; }
+      .contacto-grid { grid-template-columns: 1fr; }
+      .disco-anuncio { flex-direction: column; text-align: center; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#inicio" class="nav-logo">Nockaish</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#musica">Música</a></li>
+      <li><a href="#gacetilla">Gacetilla</a></li>
+      <li><a href="#imagenes">Imágenes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-lines">
+      <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="600" cy="400" r="300" stroke="#C9A87C" stroke-width="0.5"/>
+        <circle cx="600" cy="400" r="450" stroke="#C9A87C" stroke-width="0.5"/>
+        <circle cx="600" cy="400" r="600" stroke="#C9A87C" stroke-width="0.5"/>
+        <line x1="0" y1="400" x2="1200" y2="400" stroke="#C9A87C" stroke-width="0.5"/>
+        <line x1="600" y1="0" x2="600" y2="800" stroke="#C9A87C" stroke-width="0.5"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Dúo de Folclore · Santiago del Estero</span>
+      <h1 class="hero-title">
+        Nockaish
+        <em>la voz del monte</em>
+      </h1>
+      <p class="hero-subtitle">Dos guitarras. Dos voces. Una sola raíz.</p>
+      <div class="hero-cta">
+        <a href="#nosotros" class="btn btn-primary">Conocernos</a>
+        <a href="#contacto" class="btn btn-ghost">Contratar</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Desplazar</span>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="section-inner">
+      <div class="nosotros-text">
+        <span class="section-tag">Nosotros</span>
+        <h2 class="section-title">El latido<br>de la tierra</h2>
+        <div class="section-divider"></div>
+        <p>
+          <strong>NOCKAISH</strong> es un dúo de folclore santiagueño formado por <strong>Lupin y Lucho</strong>,
+          dos guitarras y dos voces que comparten un mismo latido: el de la tierra y el monte.
+        </p>
+        <p>
+          Su nombre, del quichua <em>"Nosotros"</em>, refleja su esencia: unidad, raíz y sencillez.
+          Con un estilo fresco y natural, rescatan la música tradicional de Santiago del Estero
+          en un sonido despojado, auténtico y profundamente humano.
+        </p>
+        <p>
+          Chacareras, zambas y gatos cobran nueva vida en sus interpretaciones, celebrando
+          la identidad y la emoción del folclore con cada actuación.
+        </p>
+        <p>
+          Actualmente se encuentran <strong>grabando su primer disco</strong>, una obra que celebra
+          la identidad y la emoción del folclore santiagueño.
+        </p>
+      </div>
+      <div class="nosotros-visual">
+        <div class="quichua-box">
+          <span class="quichua-word">Nockaish</span>
+          <span class="quichua-def">Nosotros</span>
+          <span class="quichua-lang">del quichua santiagueño</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÚSICA -->
+  <section id="musica">
+    <div class="section-inner">
+      <span class="section-tag">Música</span>
+      <h2 class="section-title">El repertorio</h2>
+
+      <div class="generos">
+        <div class="genero-item">
+          <span class="genero-num">01</span>
+          <span class="genero-name">Chacarera</span>
+          <span class="genero-desc">Ritmo vital del noroeste argentino, encarna el espíritu festivo y alegre del pueblo santiagueño.</span>
+        </div>
+        <div class="genero-item">
+          <span class="genero-num">02</span>
+          <span class="genero-name">Zamba</span>
+          <span class="genero-desc">Melodía nostálgica y lírica que habla de amor, paisaje y memoria. La más poética del folclore.</span>
+        </div>
+        <div class="genero-item">
+          <span class="genero-num">03</span>
+          <span class="genero-name">Gato</span>
+          <span class="genero-desc">Danza picaresca de movimiento rápido y carácter juguetón, de las más antiguas del folclore argentino.</span>
+        </div>
+      </div>
+
+      <div class="disco-anuncio">
+        <div class="disco-icon">
+          <svg viewBox="0 0 36 36" fill="none" stroke="#C9A87C" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="15"/>
+            <circle cx="18" cy="18" r="4"/>
+            <circle cx="18" cy="18" r="1.5" fill="#C9A87C" stroke="none"/>
+            <path d="M18 3 A15 15 0 0 1 33 18" stroke-dasharray="4 2"/>
+          </svg>
+        </div>
+        <div class="disco-info">
+          <span class="badge">En Producción</span>
+          <h3>Primer disco — Próximamente</h3>
+          <p>Una obra que celebra la identidad y la emoción del folclore santiagueño. Chacareras, zambas y gatos con un sonido despojado y auténtico.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GACETILLA -->
+  <section id="gacetilla">
+    <div class="section-inner">
+      <span class="section-tag">Gacetilla de Prensa</span>
+      <h2 class="section-title">NOCKAISH:<br>la voz del monte<br>santiagueño</h2>
+      <div class="section-divider"></div>
+
+      <div class="gacetilla-body">
+        <p>
+          En el corazón del monte santiagueño nace una propuesta musical que fusiona la tradición
+          con la frescura de dos voces jóvenes comprometidas con su tierra. <strong>NOCKAISH</strong>
+          es el encuentro de Lupin y Lucho, dos guitarristas y cantores que hacen del folclore
+          un acto de identidad y pertenencia.
+        </p>
+
+        <div class="destacado">
+          "NOCKAISH: la voz del monte santiagueño que revive las raíces del folclore."
+        </div>
+
+        <p>
+          Su propuesta artística rescata géneros esenciales del cancionero popular —la chacarera,
+          la zamba, el gato— desde una perspectiva contemporánea sin perder la esencia del folclore
+          santiagueño. Dos guitarras criollas y dos voces que se entrelazan con precisión y emoción,
+          evocando paisajes y memorias de Santiago del Estero.
+        </p>
+
+        <p>
+          El nombre <em>NOCKAISH</em>, proveniente del quichua santiagueño, significa "nosotros":
+          una declaración de unidad, raíz y colectividad que resume el espíritu del dúo.
+          Su estilo es austero y natural, sin artificios, priorizando la autenticidad del sonido acústico.
+        </p>
+
+        <p>
+          Actualmente en proceso de grabación de su primer material discográfico, NOCKAISH se perfila
+          como una propuesta sólida en el circuito del folclore argentino, con un sonido que invita
+          a la introspección y a la celebración de las raíces culturales del norte argentino.
+        </p>
+      </div>
+
+      <a href="nockaish_gacetilla_prensa.docx" class="btn btn-ghost download-btn" download>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 2v8M5 7l3 3 3-3M3 12h10"/>
+        </svg>
+        Descargar gacetilla completa (.docx)
+      </a>
+    </div>
+  </section>
+
+  <!-- IMÁGENES -->
+  <section id="imagenes">
+    <div class="section-inner">
+      <span class="section-tag">Imágenes</span>
+      <h2 class="section-title">Galería</h2>
+
+      <div class="galeria-placeholder">
+        <div class="galeria-item">
+          <svg viewBox="0 0 32 32" fill="none" stroke="#C9A87C" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="6" width="28" height="20" rx="2"/>
+            <circle cx="11" cy="14" r="3"/>
+            <path d="M2 24l7-7 5 5 4-4 7 7"/>
+          </svg>
+          <span>Foto 01</span>
+        </div>
+        <div class="galeria-item">
+          <svg viewBox="0 0 32 32" fill="none" stroke="#C9A87C" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="6" width="28" height="20" rx="2"/>
+            <circle cx="11" cy="14" r="3"/>
+            <path d="M2 24l7-7 5 5 4-4 7 7"/>
+          </svg>
+          <span>Foto 02</span>
+        </div>
+        <div class="galeria-item">
+          <svg viewBox="0 0 32 32" fill="none" stroke="#C9A87C" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="6" width="28" height="20" rx="2"/>
+            <circle cx="11" cy="14" r="3"/>
+            <path d="M2 24l7-7 5 5 4-4 7 7"/>
+          </svg>
+          <span>Foto 03</span>
+        </div>
+      </div>
+      <p class="galeria-note">
+        Para agregar tus imágenes, reemplazá los marcadores por etiquetas <code>&lt;img src="..."&gt;</code>
+        en la sección de galería del HTML.
+      </p>
+    </div>
+  </section>
+
+  <!-- AFICHES -->
+  <section id="afiches" style="border-top: 1px solid rgba(201, 168, 124, 0.08);">
+    <div class="section-inner">
+      <span class="section-tag">Afiches</span>
+      <h2 class="section-title">Material Gráfico</h2>
+
+      <div class="afiches-grid">
+        <div class="afiche-item">
+          <svg viewBox="0 0 28 28" fill="none" stroke="#C9A87C" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="2" width="20" height="24" rx="1"/>
+            <line x1="8" y1="9" x2="20" y2="9"/>
+            <line x1="8" y1="13" x2="20" y2="13"/>
+            <line x1="8" y1="17" x2="14" y2="17"/>
+          </svg>
+          <span>Afiche 01</span>
+        </div>
+        <div class="afiche-item">
+          <svg viewBox="0 0 28 28" fill="none" stroke="#C9A87C" stroke-width="1" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="2" width="20" height="24" rx="1"/>
+            <line x1="8" y1="9" x2="20" y2="9"/>
+            <line x1="8" y1="13" x2="20" y2="13"/>
+            <line x1="8" y1="17" x2="14" y2="17"/>
+          </svg>
+          <span>Afiche 02</span>
+        </div>
+      </div>
+      <p class="galeria-note">
+        Subí tus afiches al repositorio y reemplazá los marcadores con las imágenes correspondientes.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="section-inner">
+      <span class="section-tag">Contacto</span>
+      <h2 class="section-title">Hablemos</h2>
+
+      <div class="contacto-grid">
+        <div class="contacto-info">
+          <h3>Información de contacto</h3>
+
+          <div class="contacto-item">
+            <span class="label">Correo electrónico</span>
+            <span class="value"><a href="mailto:nockaish@gmail.com">nockaish@gmail.com</a></span>
+          </div>
+          <div class="contacto-item">
+            <span class="label">Teléfono</span>
+            <span class="value"><a href="tel:+54038551122233">0385 5 112233</a></span>
+          </div>
+          <div class="contacto-item">
+            <span class="label">Ubicación</span>
+            <span class="value">Santiago del Estero, Argentina</span>
+          </div>
+
+          <div class="redes">
+            <a href="https://instagram.com/nockaish" target="_blank" rel="noopener" class="red-link">
+              <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="14" height="14" rx="4"/>
+                <circle cx="9" cy="9" r="3.5"/>
+                <circle cx="13" cy="5" r="0.8" fill="currentColor" stroke="none"/>
+              </svg>
+              @nockaish
+            </a>
+            <a href="https://youtube.com/@nockaish" target="_blank" rel="noopener" class="red-link">
+              <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="4" width="16" height="10" rx="3"/>
+                <path d="M7 7l4 2-4 2V7z" fill="currentColor" stroke="none"/>
+              </svg>
+              nockaish — YouTube
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; color: var(--arena); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2rem; opacity: 0.7;">Envianos un mensaje</h3>
+          <form class="contacto-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" />
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" placeholder="¿Cómo podemos ayudarte?"></textarea>
+            </div>
+            <button type="submit" class="form-submit">Enviar mensaje</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Nockaish</span>
+    <span class="footer-copy">© 2025 NOCKAISH — Folclore Santiagueño</span>
+  </footer>
+
+  <script>
+    // Hamburger menu
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').style.padding =
+        window.scrollY > 60 ? '0.7rem 3rem' : '1.2rem 3rem';
+    });
+
+    // Form submit (mailto fallback)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const nombre  = document.getElementById('nombre').value;
+      const email   = document.getElementById('email').value;
+      const mensaje = document.getElementById('mensaje').value;
+      const subject = encodeURIComponent('Contacto desde nockaish.com — ' + nombre);
+      const body    = encodeURIComponent('Nombre: ' + nombre + '\nCorreo: ' + email + '\n\n' + mensaje);
+      window.location.href = 'mailto:nockaish@gmail.com?subject=' + subject + '&body=' + body;
+    }
+
+    // Intersection observer for subtle fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.genero-item, .galeria-item, .afiche-item, .contacto-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
